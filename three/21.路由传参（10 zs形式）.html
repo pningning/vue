@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .my-active {
+            color: red;
+            font-size: 20px;
+        }
+        .v-enter {
+            opacity: 0;
+            transform: translateX(100px)
+        }
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(-100px)
+        }
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s ease;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 创建路由链接 -->
+        <router-link to="/login/10/zs">登录</router-link>
+        <router-link to="/reg">注册</router-link>
+        <!--准备容器-->
+        <transition>
+            <router-view></router-view>
+        </transition>
+    </div>
+    <script src="./lib/vue-2.5.9.js"></script> 
+    <script src="./lib/vue-router-v3.0.1.js"></script>
+    <script>
+        //通过/形式的传递参数需要修改路由规则
+        //创建路由的组件
+        const login = {
+            template: '<h3>登录组件----这是/后面的参数{{$route.params.id}}---{{$route.params.name}}</h3>',
+            created() {//生命周期函数
+                console.log(this.$route.params)//得到的是/后面的参数，是一个对象
+            }
+        }
+        const reg = {
+            template: '<h3>注册组件</h3>'
+        }
+        //创建路由对象
+        const router = new VueRouter({
+            routes: [
+                //路由的重定向
+                {path: '/', redirect: '/login'},
+                {path: '/login/:id/:name', component: login},
+                {path: '/reg', component: reg}
+            ],
+            linkActiveClass: 'my-active' //改变路由显示的时候的类名
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            router
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="点击获取页面上的组件" @click="getCom">
+        <com ref="com"></com>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script> 
+<script>
+    Vue.component('com', {
+        template: '<h3>这是一个小组件{{msg}}</h3>',
+        data: function() {
+            return {msg: 'ok'}
+        },
+        methods: {
+            show() {
+                console.log('被调用了')
+            }
+        }
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            getCom() {
+                console.log(this.$refs.com.msg)
+                this.$refs.com.msg = '123'
+                this.$refs.com.show()
+            }
+        }
+    })
+</script>
+</body>
+</html>

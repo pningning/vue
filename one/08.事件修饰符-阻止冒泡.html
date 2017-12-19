@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="box" v-on:click="box">
+            <input type="button" value="按钮" v-on:click.stop="btn">
+        </div>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            btn() {
+                console.log('btn被点击了')
+            },
+            box() {
+                console.log('div被点击了')
+            }
+        }
+    })
+</script>
+</body>
+</html>

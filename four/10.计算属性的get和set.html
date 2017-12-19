@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        firstname:<input type="text" v-model="firstname">+
+        lastname:<input type="text" v-model="lastname">=
+        fullname<input type="text" v-model="fullname">
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            firstname: '',
+            lastname: ''
+        },
+        computed: {
+            get() {//表示外界引用了内部的值
+                return this.firstname + '-' + this.lastname
+            },
+            set(val) {//表示外界重新为fullname赋值了
+                const parts = val.split('-')
+                this.firstname = parts[0] || ''
+                this.lastname = parts[1] || ''
+            }
+        }
+    })
+</script>
+</body>
+</html>

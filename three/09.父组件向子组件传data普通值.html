@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <com1 :msg123="msg"></com1>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script> 
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '我是父组件的数据'
+        },
+        components: {
+            'com1': {
+                template: '<h3>我是子组件------{{msg123}}</h3>',
+                props: ['msg123']
+            }
+        }
+    })
+</script>      
+</body>
+</html>

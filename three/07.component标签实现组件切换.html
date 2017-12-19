@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <a href="#" @click="comname='com1'">显示组件1</a>&nbsp;&nbsp;&nbsp;
+        <a href="#" @click="comname='com2'">显示组件2</a>&nbsp;&nbsp;&nbsp;
+        <a href="#" @click="comname='com3'">显示组件3</a>&nbsp;&nbsp;&nbsp;
+        <a href="#" @click="comname='com4'">显示组件4</a>&nbsp;&nbsp;&nbsp;
+        <component :is="comname"></component>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    Vue.component('com1', {
+        template: '<h3>孙行者</h3>'
+    })
+
+    Vue.component('com2', {
+        template: '<h3>者行孙</h3>'
+    })
+
+    Vue.component('com3', {
+        template: '<h3>奔波灞</h3>'
+    })
+
+    Vue.component('com4', {
+        template: '<h3>霸波奔</h3>'
+    })
+
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            comname: 'com1'
+        }
+    })
+</script>
+</body>
+</html>

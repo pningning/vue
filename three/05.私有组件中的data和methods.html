@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <mycom></mycom>
+    </div>
+    <script src="./lib/vue-2.5.9.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            components: {
+                'mycom': {
+                    template: `<div>
+                        <input type="button" value="点击加1" @click="click">
+                        <h3>当前的content值为：{{ content }}</h3>
+                    </div>`,
+                    data: function () {
+                        return { content: 0 }
+                    },
+                    methods: {
+                        click() {
+                            this.content++
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

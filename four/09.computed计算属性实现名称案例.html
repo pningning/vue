@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+            firstname:<input type="text" v-model="firstname">+
+            lastname:<input type="text" v-model="lastname">=
+            fullanme:<input type="text" v-model="fullname">
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            firstname: '',
+            lastname: ''
+        },
+        computed: {
+            'fullname': function() {
+                return this.firstname + '-' + this.lastname
+            }
+        }
+    })
+</script>
+</body>
+</html>

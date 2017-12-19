@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用组件 -->
+        <mycom></mycom>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        components: {//定义私有的组件
+            'mycom': {//组件名要用''或"" 包裹
+                template: '<h3>这是我私有的组件</h3>'
+            }
+        }
+    })
+</script>
+</body>
+</html>

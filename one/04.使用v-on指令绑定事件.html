@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="app">
+	<input type="button" value="点击" v-on:click="app(1,2,3)">
+	<hr>
+	<h3>俊哥当前的体重值 ：{{ msg }}</h3>
+</div>
+<script src="./lib/vue-2.5.9.js"></script>	
+<script>
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			msg: 10
+		},
+		methods: {
+			app(...args) {
+				//还可以传递参数
+				console.log(args)
+				// this.msg += 3
+				
+			}
+		}
+	})
+</script>
+</body>
+</html>

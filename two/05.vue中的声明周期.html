@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app2">
+        <input type="button" value="按钮" @click="toggle">
+        <h3>{{ msg }}</h3>
+    </div>
+
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            msg: '我是数据'
+        },
+        methods: {
+            add() {
+                const p = {id: this.id, name: this.name}
+                this.list.push(p)
+            },
+            toggle() {
+                this.msg = '我的数据改变了呀'
+            }
+        },
+        beforeCreate() {//创建阶段的第一个声明周期，此时data，methods还没有初始化好
+        console.log(this.msg) //---> undefined
+            
+        },
+        created() {//创建阶段的第二个生命周期，此时data 和methods已经初始化完毕，可以任意的操作data的数据，和methods中的方法了
+            console.log(this.msg)//--> 我是数据
+        },
+        beforeMount() {//此时模板编译之后还在内存中没有渲染到页面上
+            const h3 = document.getElementsByTagName('h3')[0]
+            console.log(h3.innerHTML) //-->undefined
+        },
+        mounted() {//此时模板已经渲染到页面上，可以操作页面上的dom元素了，同时标志着创建阶段的结束
+            const h3 = document.getElementsByTagName('h3')[0]
+            console.log(h3.innerHTML)//-->我是数据
+        }, //下面是运行阶段
+        beforeUpdate() {//运行阶段，数据更新之前 ，获取的内容还是数据更新之前的
+            const h3 = document.getElementsByTagName('h3')[0]
+            console.log(h3.innerHTML)//-->我是数据 
+        },
+        updated() {//数据更新并渲染到页面上之后的函数
+            const h3 = document.getElementsByTagName('h3')[0]
+            console.log(h3.innerHTML) //-->我的数据改变了呀
+            
+        }
+        
+    })
+</script>
+</body>
+</html>

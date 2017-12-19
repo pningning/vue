@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="登录" @click="flag = true">
+        <input type="button" value="注册" @click="flag = false">
+        <login v-if="flag"></login>
+        <reg v-else="flag"></reg>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    //定义一个全局组件登录
+    Vue.component('login', {
+        template: `<div>
+            用户名：<input type="text" /><br>
+            密码：<input type="text" /><br>
+            <input type="button" value="登录" />
+        </div>`
+    })
+    //注册全局组件
+    Vue.component('reg', {
+        template: `<div>
+            用户名：<input type="text" /><br>
+            密码：<input type="text" /><br>
+            <input type="button" value="注册" />
+        </div>`
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        },
+    })
+</script>
+</body>
+</html>

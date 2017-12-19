@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ msg }}</h3>
+        <h3>{{ msg | strFormat('邪恶') }}</h3>
+        <h3>{{ msg | strFormat }}</h3>
+        <p>{{msg2 | one }}</p>
+        <hr>
+    </div>
+    <div id="app2">
+        <h5>{{ msg }}</h5>
+        <h3>{{ msg | strFormat }}</h3>
+        <h5>{{ msg | strD }}</h5>
+        <h5>{{ msg | strD | strA}}</h5>
+        <h5>{{ msg | strD | strA | strFormat('嘿嘿')}}</h5>
+        <h3>{{ msg | strFormat }}</h3>
+        <p>{{msg2 | one }}</p>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    //定义一个全局过滤器，可以传递参数，也可以设置形参默认值，不传参的时候，使用默认值
+    Vue.filter('strFormat', function(data,str='哈哈') {
+        return data.replace(/纯洁/g, str)
+    })
+    Vue.filter('one', function(data) {
+        return data + '你好吗，为什么'
+    })
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '曾经，我是一个纯洁得人，纯洁的我傻傻的以为，世界是的人都很纯洁',
+            msg2: '永别'
+        },
+        methods: {}
+    })
+//创建第二个vue实例
+var vm2 = new Vue({
+    el: '#app2',
+    data: {
+        msg: '纯洁,纯洁,纯洁',
+        msg2: '再见'
+    },
+    methods: {},
+    filters: {
+        strD: function(data) {
+            return data + '-------'
+        },
+        strA(data) {
+            return data + '====='
+        },
+        strFormat(data,str) {//私有过滤器跟全局的过滤器同名，使用就近原则
+            return data + '123'
+        }
+    }
+})
+//如果创建的vue实例没有 初始化容器，可以指定这个实例，初始化那个容器
+// vm2.$mount('#app2')
+</script>
+</body>
+</html>

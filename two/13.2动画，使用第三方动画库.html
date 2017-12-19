@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/animate.css">
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="点击" @click="flag = !flag">
+        <transition enter-active-class="bounceInDown" leave-active-class="bounceInDown">
+            <h3 class="animated" v-show="flag">{{ msg }}</h3>
+        </transition>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '我是通过第三方库实现动画的',
+            flag: false
+        },
+        methods: {
+        }
+    })
+</script>
+</body>
+</html>

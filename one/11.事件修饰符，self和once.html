@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="box1" @click.self="div">
+                <input type="button" value="按钮2" @click="btn1">
+        </div>
+        <input type="button" value="按钮1" @click.once="btn2">
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>  
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{},
+        methods: {
+            div() {
+                console.log('只执行自己的')
+            },
+            btn1() {
+                console.log('按钮1.被点击了')
+            },
+            btn2() {
+                console.log('按钮2被点击了/只执行一次')
+            }
+        }
+    })
+</script>
+</body>
+</html>

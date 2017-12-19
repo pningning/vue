@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .thin {
+            font-weight: 200;
+        }
+        .small {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>这是原始的标题</h1>
+        <!-- <p>在vue中使用v-bind为元素绑定数组的类样式</p> -->
+        <h1 v-bind:class="['red','small']">这是一个大大的标题</h1>
+        <hr>
+        <h1 :class="['red','thin']">这是一个大标题</h1>
+        <p>在数组中使用三元表达式</p>
+        <h1 :class="['red',isthin ? 'thin': '']">这是一个大标题</h1>
+        <p>简化的方式 把三元表达式变成一个对象，属性名为类名，属性值为true</p>  
+        <h1 :class="['red',{thin: true}]">这是一个大标题</h1>
+        <p>属性值，开始时data里面的内容</p>
+        <h1 :class="['red',{thin: isthin}]">这是一个大标题</h1>
+        <hr>
+        <p>传递对象作为类样式</p>
+        <h1 :class="{red: true, thin: true, small: isthin}">这是一个大对象</h1>
+        <input type="button" value="变瘦" @click="isthin=true">
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            isthin: false
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

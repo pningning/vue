@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        li {
+            height: 30px;
+            width: 500px;
+            border: 1px dashed #ccc;
+            padding-left: 10px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: orange;
+            box-shadow: 0 0 7px green;
+        }
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(200px);
+        }
+        .v-enter-active,
+        .v-leave-active {
+           transition: all 0.5s ease;
+        }
+        .v-move {
+            transition: all 0.5s ease;
+        }
+        .v-leave-active {
+            position: absolute;
+        }
+    </style>
+</head>
+<div id="app">
+        <div>
+            ID:<input type="text" v-model="id">    
+            Name:<input type="text" v-model="name"> 
+            <input type="button" value="添加" @click="add"> 
+        </div>
+        <transition-group tag="ul">
+            <li v-for="(item,i) in list" :key="item.id" @click="del(i)">{{item.id}}-------{{item.name}}</li>
+        </transition-group>
+</div>
+<body>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            list: [
+                {id: 1, name: '张三'},
+                {id: 2, name: '李四'},
+                {id: 3, name: '王五'},
+                {id: 4, name: '马六'}
+            ],
+            id: '',
+            name: ''
+        },
+        methods: {
+            del(i) {
+                this.list.splice(i, 1)
+            },
+            add() {
+                const p = {id: this.id, name: this.name}
+                // this.list.push(p)//从后面添加
+                this.list.unshift(p)//从前面添加
+                this.id = this.name = ''
+            }
+        }
+    })
+</script>
+</body>
+</html>

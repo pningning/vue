@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        输入框：<input type="text" v-focus>
+        <h4 v-color>{{ msg }}</h4>
+        <!-- 注意传入的值，要用'' 括起来，不然里面的值，会被当做变量来解析 -->
+        <h4 v-color="'blue'">{{ msg }}</h4>
+        <h4 v-color="'green'" v-bold="300">{{ msg }}</h4>
+    </div>
+
+    <div id="app2">
+        Id:<input type="text" v-model="id">
+        Name:<input type="text" v-model="name" @keyup.enter="add">
+        <input type="button" value="添加" @click="add">
+        <ul>
+            <li v-for="item in list">ID:{{item.id}}--------name:{{item.name}}</li>
+        </ul>
+    </div>
+
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    // 注意： 1,自定义指令的名称定义时不需要使用 v- 开头，调用的时候需要添加
+    //        2.私有的过滤器和指令，filter directive 都要加上s 表示的是私有的
+    //======自动获取焦点的指令=========
+    Vue.directive('focus',{
+        bind: function(el) {
+            //如果是元素的样式，写在bind中
+            // el.style.color = 'red'
+        },
+        inserted: function(el) {
+            //指令绑定的元素被插入到父节点的时候，调用
+            el.focus() //原生的方法，让元素获取焦点
+        }
+    })
+    //======控制颜色的指令========
+    Vue.directive('color', {
+        bind(el, binding) {
+            //binding是一个对象，里面有很多的属性，具体看官方文档
+            //binding.value 表示指令的绑定值
+            console.log(binding.value)
+            el.style.color = binding.value || 'red'
+        }
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '世界上最好的人'
+        },
+        methods: {//事件处理的函数
+        },
+        filters: {//自动以私有过滤器
+
+        },
+        directives: {//=======定义私有的自定义指令====
+                bold: {//指令的名称,自定义字体加粗
+                    bind(el,binding) {
+                        el.style.fontWeight = binding.value
+                    }
+                }
+            }
+    })
+
+
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            list: [
+                {id: 1, name: '张三'},
+                {id: 2, name: '张三'},
+                {id: 3, name: '张三'},
+                {id: 4, name: '张三'}
+            ],
+            id: '',
+            name: ''
+        },
+        methods: {
+            add() {
+                const p = {id: this.id, name: this.name}
+                this.list.push(p)
+            }
+        },
+        filters: {},
+    })
+
+</script>
+</body>
+</html>

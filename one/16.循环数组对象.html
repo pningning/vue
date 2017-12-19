@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list">{{item.id}} --- {{item.name}}</li>
+        </ul>
+        <ul>
+            <li v-for="(item,i) in list">{{item.id}} --- {{item.name}}--{{i}}</li>
+        </ul>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script> 
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            list: [
+                {id:1, name: '嬴政'},
+                {id:2, name: '呵呵'},
+                {id:3, name: '嘿嘿'},
+                {id:4, name: '哈哈'},
+            ]
+        }
+    })
+</script>
+</body>
+</html>

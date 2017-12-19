@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1 {
+            height: 200px;
+            background-color: green;
+        }
+        #box2 {
+            height: 100px;
+            width: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="box1" @click="box1">
+            <div id="box2" @click.self="box2">
+                <input type="button" value="按钮" @click="btn">
+            </div>
+        </div>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>  
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            box1() {
+                console.log('最大的盒子')
+            },
+            box2() {
+                console.log('第二个盒子')
+            },
+            btn() {
+                console.log('按钮')
+            }
+        }
+    })
+</script>
+</body>
+</html>

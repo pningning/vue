@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app2">
+        Id:<input type="text" v-model="id">
+        Name:<input type="text" v-model="name" @keyup.up="add">
+        <input type="button" value="添加" @click="add">
+        <ul>
+            <li v-for="item in list">ID:{{item.id}}--------name:{{item.name}}</li>
+        </ul>
+    </div>
+
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            list: [
+                {id: 1, name: '张三'},
+                {id: 2, name: '张三'},
+                {id: 3, name: '张三'},
+                {id: 4, name: '张三'}
+            ],
+            id: '',
+            name: ''
+        },
+        methods: {
+            add() {
+                const p = {id: this.id, name: this.name}
+                this.list.push(p)
+            }
+        },
+        filters: {},
+    })
+    //一般常用的键盘按钮，官网上都有定义，具体看你文档
+    // 自定义按键修饰符
+    // Vue.config.keyCodes.down = 40
+</script>
+</body>
+</html>

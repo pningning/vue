@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/account">显示账号组件</router-link>
+        <router-link to="/newlist">显示新闻列表组件</router-link>
+        <router-view></router-view>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script src="./lib/vue-router-v3.0.1.js"></script>
+<script>
+
+    var account = {
+        template: `<div>
+            <h3>账号组件</h3>
+            <-- 子组件嵌套，把路由链接和容器都要放在父组件中 -->
+            <router-link to="/account/login">登录</router-link>
+            <router-link to="/account/reg">注册</router-link>
+            <router-view></router-view>
+        </div>`
+    }
+    var newlist = {
+        template: `<div>
+            <h3>新闻列表组件</h3>
+        </div>`
+    }
+
+    var login = {
+        template: `<div>
+            <h3>登录</h3>
+        </div>`
+    }
+    var reg = {
+        template: `<div>
+            <h3>注册</h3>
+        </div>`
+    }
+    var router = new VueRouter({
+        routes: [
+            {path: '/account', component: account,children: [//添加一个children属性来匹配嵌套的子路由规则
+                {path: 'login',component: login},
+                {path: 'reg',component: reg},
+            ]},
+            {path: '/newlist', component: newlist},
+        ]
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        router
+    })
+</script>
+</body>
+</html>

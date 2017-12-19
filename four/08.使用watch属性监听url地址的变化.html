@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/login">登录</router-link>
+        <router-link to="/reg">注册</router-link>
+        <router-view></router-view>
+        <h3>{{ msg }}</h3>
+     </div>       
+    <script src="./lib/vue-2.5.9.js"></script>
+    <script src="./lib/vue-router-v3.0.1.js"></script>
+    <script>
+        const login = {
+            template: '<h3>登录</h3>'
+        }
+        const reg = {
+            template: '<h3>注册</h3>'
+        }
+        const router = new VueRouter({
+            routes: [
+                {path: '/login', component: login},
+                {path: '/reg', component: reg}
+            ]
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '欢迎'
+            },
+            created() {//在页面被刷新的时候会执行，同时，如果页面被刷新了，也会执行这个函数
+                const path = this.$route.path
+                if(path === '/login') {
+                    this.msg = '欢迎进入登录页面'
+                } else if(path === '/reg') {
+                    this.msg = '欢迎进入注册页面'
+                }
+            },
+            router,
+            watch: {
+                '$route.path': function(newval) {
+                    if(newval === '/login') {
+                        this.msg = '欢迎进入登录页面'
+                    } else if(newval === '/reg') {
+                        this.msg = '欢迎进入注册页面'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

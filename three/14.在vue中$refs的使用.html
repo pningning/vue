@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="点击获取元素的内容" ref="btn" @click="click">
+        <h3 ref="myh3">{{ msg }}</h3>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '要获取的内容'
+        },
+        methods: {
+            click() {
+                console.log(this.$refs.myh3.innerHTML)
+            }
+        }
+    })
+</script>
+</body>
+</html>

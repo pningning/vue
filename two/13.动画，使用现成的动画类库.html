@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/animate.css">
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="点击切换" @click="flag = !flag ">
+        <transition enter-active-class="animated bounceInDown" leave-active-class="animated bounceInDown">
+            <h3 v-show="flag">这是用的别人写好的动画效果</h3>
+        </transition>
+        <!-- 第三方的库的类名，可以加在enter-active-class类名上，也可以直接加在目标元素的身上 -->
+        <input type="button" value="点击切换2" @click="flag2 = !flag2 ">
+        <transition enter-active-class="bounceInDown" leave-active-class="bounceInDown">
+                <h3 class="animated" v-show="flag2">这是用的别人写好的动画效果====</h3>
+        </transition>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: false,
+            flag2: false
+        },
+        methods: {
+        }
+    })
+</script>
+</body>
+</html>

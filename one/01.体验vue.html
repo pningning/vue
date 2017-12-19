@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<p>{{ one }}</p>
+	</div>
+	<div class="two">
+		<p>{{ two }}</p>
+	</div>
+</body>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+	//创建一个vue的实例
+	const vm = new Vue({
+		el: '#app',
+		data: {
+			one: '这是第一次使用vue'
+		}
+	})
+	const vm2 = new Vue({
+		el: '.two',
+		data: {
+			two: '这是用类控制的vue'
+		}
+	})
+</script>
+</html>

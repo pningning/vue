@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            height: 120px;
+            background-color: pink;
+        }
+        .box {
+            height: 400px;
+            display: flex;
+        }
+        .sidebar {
+            flex: 2;
+            background-color: red;
+        }
+        .content {
+            flex: 10;
+            background-color: green;
+        }
+        .footer {
+            height: 120px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-view name="header"></router-view>
+        <div class="box">
+            <router-view name="sidebar"></router-view>
+            <router-view name="content"></router-view>
+        </div>
+        <router-view name="footer"></router-view>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script src="./lib/vue-router-v3.0.1.js"></script>
+<script>
+    var header = {
+        template: `<div class="header">
+            <h3>头部区域</h3>
+        </div>`
+    }
+    var sidebar = {
+        template: `<div class="sidebar">
+            <h3>左侧区域</h3>
+        </div>`
+    }
+    var content = {
+        template: `<div class="content">
+            <h3>右侧区域</h3>
+        </div>`
+    }
+    var footer = {
+        template: `<div class="footer">
+            <h3>底部区域</h3>
+        </div>`
+    }
+    //创建路由对象
+    var router = new VueRouter({
+        routes: [
+            {path: '/', components: {
+                'header': header,
+                'sidebar': sidebar,
+                'content': content,
+                'footer': footer
+            }}
+        ]
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        router
+    })
+</script>
+</body>
+</html>

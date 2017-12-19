@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <a href="http://www.baidu.com" @click.prevent="baidu">去百度</a>
+        <form action="" v-on:click.prevent="postForm">
+            <input type="text" name="user">
+            <input type="text" name="password">
+            <button>提交</button>
+        </form>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            postForm() {
+                console.log('表单的默认行为阻止了')
+            },
+            baidu() {
+                console.log('百度不跳转了')
+            }
+        }
+    })
+</script>
+</body>
+</html>

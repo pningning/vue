@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <com @fun1="show"></com>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data:{},
+        methods: {
+            show(data) {
+                console.log(data)
+            }
+        },
+        components: {
+            'com': {
+                template: `<div>
+                    <input type="button" value="点击把子组件的数据传递给父组件" @click="app">
+                </div>`,
+                data: function() {
+                    return {msg: '我是子组件的数据'}
+                },
+                methods: {
+                    app() {
+                        this.$emit('fun1', this.msg)
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

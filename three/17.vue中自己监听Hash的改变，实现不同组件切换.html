@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <a href="#/a">a组件</a>
+        <a href="#/b">b组件</a>
+        <a href="#/c">c组件</a>
+        <component :is="comname"></component>
+    </div>
+<script src="./lib/vue-2.5.9.js"></script> 
+<script>
+    Vue.component('com1', {
+        template: '<h3>a组件</h3>'
+    })
+    Vue.component('com2', {
+        template: '<h3>b组件</h3>'
+    })
+    Vue.component('com3', {
+        template: '<h3>c组件</h3>'
+    })
+    
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            comname: 'com1'
+        },
+        methods:{},
+        mounted() {
+            //里面的this存在问题，要使用箭头函数
+            window.onhashchange = () => {
+                const hash = location.hash
+                console.log(hash)
+                switch(hash) {
+                    case '#/a':
+                    this.comname = 'com1'
+                    break;
+                    case '#/b':
+                    this.comname = 'com2'
+                    break;
+                    case '#/c':
+                    this.comname = 'com3'
+                    break;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

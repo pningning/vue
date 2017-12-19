@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p v-text="msg + 123">abc</p>
+        <h3>{{ msg + 123 }}abc</h3>
+        
+        <p v-text="msg2"></p>
+        <p v-html="msg2"></p>
+    </div>
+    <script src="./lib/vue-2.5.9.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '你好啊',
+                msg2: '<strong>哈哈</strong>'
+            }
+        })
+    </script>  
+</body>
+</html>

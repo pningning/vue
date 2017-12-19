@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 把父组件的方法，以自定义事件的方式绑定到子组件上  -->
+        <com @fun1="show"></com>
+    </div>
+    <script src="./lib/vue-2.5.9.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                show() {
+                    console.log('有人调用了父组件的方法')
+                }
+            },
+            components: {
+                'com': {
+                    template: `<div>
+                       <input type="button" value="点击调用父组件的方法" @click="add">
+                    </div>`,
+                    methods: {
+                       add() {
+                        //通过$emit（）函数接受调用一下传递过来的方法，子组件就可以直接使用自己的方法了
+                        this.$emit('fun1')
+                       }
+                    }   
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

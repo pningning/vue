@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./node_modules/moment/min/moment.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<p>{{tiem}}</p>
+	<p>{{tiem | getDate | one("---", "====")}}</p>
+	<p v-bind:title="new Date()| getDate">haha</p>
+	<!-- <p v-text="time | getDate">hehs</p> v-text 不可以使用全局过滤 -->
+</div>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+	//定义一个全局过滤器
+	Vue.filter('getDate', function(data) {
+		return moment(data).format('YYYY-MM-DD HH:mm:ss')
+	})
+	Vue.filter('one', function(data,str1, str2) {
+		return data + str1 + str2
+	})
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			tiem: new Date()
+		}
+	})
+</script>
+</body>
+</html>

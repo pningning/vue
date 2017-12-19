@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<div id="app">
+		<input type="button" value="浪起来" @click="lang">
+		<input type="button" value="停止" @click="stop">
+		<h4>{{ msg }}</h4>
+	</div>
+</head>
+<body>
+<script src="./lib/vue-2.5.9.js"></script>
+<script>
+	const vm = new Vue({
+		el: '#app',
+		data: {
+			msg: '我拿Buff,谢谢~',
+			intervalId: null
+		},
+		methods: {
+			lang() {
+				if(this.intervalId !== null) return
+					this.intervalId = setInterval(() => {
+						const header = this.msg.substring(0,1)
+						const body = this.msg.substring(1)
+						this.msg = body + header
+					}, 300)
+			},
+			stop() {
+				clearInterval(this.intervalId)
+				this.intervalId = null
+			}
+		}
+	})
+</script>
+</body>
+</html>
