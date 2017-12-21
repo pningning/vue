@@ -1,0 +1,9 @@
+ul {
+    list-style: none;
+}
+#box {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    background: url(../images/猴子.png) no-repeat;
+}
